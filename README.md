@@ -90,9 +90,6 @@ Sentence: "The Andes mountains are stunning."
 Tokens: ["The", "Andes", "mountains", "are", "stunning", "."]
 Labels: ["O", "B-Mount", "I-Mount", "O", "O", "O"]
 ```
-
-After processing, the dataset is converted to a uniform IOB format for NER.
-
 ---
 
 ## Workflow
