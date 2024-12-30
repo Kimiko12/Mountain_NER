@@ -113,6 +113,8 @@ Training metrics will be logged. Example metrics:
 Run `python train.py` to start training process
 ```
 
+
+```
 Eval Loss: 0.206
 Accuracy: 97.6%
 F1 Score: 88.0%
