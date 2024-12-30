@@ -258,7 +258,7 @@ def main() -> None:
     train_dataset = NERDataset(df=train_df, tokenizer=tokenizer, max_len=MAX_LEN)
     test_dataset = NERDataset(df=test_df, tokenizer=tokenizer, max_len=MAX_LEN)
 
-    label2id = train_dataset.label2id
+    label2id = {'B_mount': 0, 'I_mount': 1, 'O': 2}
 
     # Start training
     model = train(
