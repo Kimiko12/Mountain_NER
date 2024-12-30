@@ -116,7 +116,7 @@ Run `python train.py` to start training process
 ```
 
 
-Training metrics:
+Metrics:
 ```
 Eval Loss: 0.206
 Accuracy: 97.6%
