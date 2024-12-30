@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Script for fine-tuning a BERT model for token classification (Named Entity Recognition).
 The process includes:
