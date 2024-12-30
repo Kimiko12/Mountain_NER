@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Script for preparing NER datasets:
 1. Data retrieved from Hugging Face (via API).
