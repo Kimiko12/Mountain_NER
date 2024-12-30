@@ -15,7 +15,6 @@ from transformers import BertTokenizerFast, DataCollatorForTokenClassification
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
 
-# Import your DataPreparation module
 from data_preparation import DataPreparation
 
 
@@ -121,7 +120,6 @@ class NERDataset(Dataset):
             f"Number of tokens ({len(tokens)}) does not match number of labels ({len(labels)})."
         )
 
-        # (Optional) Truncate if too long for [CLS] and [SEP].
         if len(tokens) > self.max_length - 2:
             tokens = tokens[: (self.max_length - 2)]
             labels = labels[: (self.max_length - 2)]
