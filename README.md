@@ -1,6 +1,6 @@
 # Named Entity Recognition on Mountain Dataset with BERT
 
-This repository implements a Named Entity Recognition (NER) task using a fine-tuned BERT model. The NER model identifies specific entities such as mountain names in text using the IOB (Inside-Outside-Beginning) labeling approach:
+This repository implements a Named Entity Recognition (NER) system using a fine-tuned BERT model. The NER model is designed to identify specific entities, such as mountain names, within text using the IOB (Inside-Outside-Beginning) labeling scheme:
 
 - **B-Mountain**: Beginning of a mountain entity.
 - **I-Mountain**: Inside a mountain entity.
@@ -10,11 +10,11 @@ This repository implements a Named Entity Recognition (NER) task using a fine-tu
 
 ## Features
 
-- Prepares and tokenizes raw text data for NER tasks.
-- Fine-tunes a BERT model with class weighting for imbalanced datasets.
-- Evaluates the model using accuracy, precision, recall, and F1-score.
-- Supports inference to predict mountain entities in new text.
-- Flexible configuration and modular structure for extensibility.
+- **Data Preparation**: Cleans and tokenizes raw text data tailored for NER tasks.
+- **Model Fine-Tuning**: Utilizes a BERT model with class weighting to address imbalanced datasets.
+- **Comprehensive Evaluation**: Assesses model performance using metrics like accuracy, precision, recall, and F1-score.
+- **Inference Capability**: Enables prediction of mountain entities in new, unseen text.
+- **Modular Design**: Offers flexible configuration and a modular structure to facilitate extensibility and customization.
 
 ---
 
@@ -24,12 +24,12 @@ This repository implements a Named Entity Recognition (NER) task using a fine-tu
 NER_with_Bert/
 ├── data/                      # Raw and processed datasets
 ├── model_checkpoints/         # Directory to save trained models
-├── config.py                  # Configuration file for constants
+├── config.py                  # Configuration file for constants and hyperparameters
 ├── dataset.py                 # Custom dataset class for NER
-├── data_preparation.py        # Data preparation utility
+├── data_preparation.py        # Data preparation utility script
 ├── train.py                   # Main training script
-├── inference.py               # Inference script
-├── utils.py                   # Utility functions
+├── inference.py               # Inference script for making predictions
+├── utils.py                   # Utility functions and helpers
 ├── requirements.txt           # Python dependencies
 └── README.md                  # Project documentation
 ```
@@ -38,33 +38,39 @@ NER_with_Bert/
 
 ## Getting Started
 
-#### Link on google drive with model weights and dataset: https://drive.google.com/drive/folders/1RKO4KOj6-9hctxPfYmcD5cuKw-ksP64u?usp=drive_link
+### Accessing the Dataset and Model Weights
+
+Download the dataset and pre-trained model weights from the following Google Drive link:
+
+[Google Drive - Mountain NER Dataset and Model Weights](https://drive.google.com/drive/folders/1RKO4KOj6-9hctxPfYmcD5cuKw-ksP64u?usp=drive_link)
 
 ### Prerequisites
 
-- Python 3.9+
-- GPU (optional for faster training)
+- **Python**: Version 3.9 or higher
+- **GPU**: Optional, recommended for accelerated training
 
 ### Installation
 
-Clone the repository:
+1. **Clone the Repository**
 
-```bash
-git clone https://github.com/Kimiko12/Mountain_NER.git
-cd Mountain_NER
-```
+   ```bash
+   git clone https://github.com/Kimiko12/Mountain_NER.git
+   cd Mountain_NER
+   ```
 
-Install the dependencies:
+2. **Install Dependencies**
 
-```bash
-pip install -r requirements.txt
-```
+   Install the required Python packages using `pip`:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
 ## Configuration
 
-Update `config.py` to set hyperparameters and paths:
+Configure hyperparameters and file paths by updating the `config.py` file:
 
 ```python
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -81,42 +87,43 @@ PATH_TO_MODEL_CHECKPOINT = 'model_checkpoints/'
 
 ## Dataset
 
-This task uses a combination of two datasets:
+This project leverages a combination of two datasets:
 
-1. **[Kaggle Mountain Dataset](https://www.kaggle.com/datasets/geraygench/mountain-ner-dataset)**  
-2. **[Hugging Face Mountain Dataset](https://huggingface.co/datasets/telord/mountains-ner-dataset)**  
+1. **[Kaggle Mountain Dataset](https://www.kaggle.com/datasets/geraygench/mountain-ner-dataset)**
+2. **[Hugging Face Mountain Dataset](https://huggingface.co/datasets/telord/mountains-ner-dataset)**
 
-### Prepared Dataset Example:
+### Example of a Prepared Dataset Entry
+
 ```text
 Sentence: "The Andes mountains are stunning."
 Tokens: ["The", "Andes", "mountains", "are", "stunning", "."]
-Labels: ["O", "B-Mount", "I-Mount", "O", "O", "O"]
+Labels: ["O", "B-Mountain", "I-Mountain", "O", "O", "O"]
 ```
+
 ---
 
 ## Workflow
 
-### Data Preparation
+### 1. Data Preparation
 
-Run `data_preparation.py` to process raw datasets into a tokenized format:
+Process raw datasets into a tokenized format suitable for NER tasks.
 
 ```bash
 python data_preparation.py
 ```
 
-This script converts raw datasets into a DataFrame with tokens and IOB labels.
+This script converts raw datasets into a DataFrame containing tokens and their corresponding IOB labels.
 
----
+### 2. Model Training
 
-### Model Training
+Train the BERT-based NER model. Training metrics will be logged during the process.
 
-Training metrics will be logged. Example metrics:
+```bash
+python train.py
 ```
-Run `python train.py` to start training process
-```
 
+**Example Training Metrics:**
 
-Metrics:
 ```
 Eval Loss: 0.206
 Accuracy: 97.6%
@@ -125,28 +132,34 @@ Precision: 83.1%
 Recall: 94.3%
 ```
 
----
+### 3. Inference
 
-### Inference
-
-Use the `inference.py` script to test the model on new sentences:
+Use the trained model to predict mountain entities in new sentences.
 
 ```python
 from inference import NERInference
 
 model_path = 'model_checkpoints/'
-id2label = {0: 'B_mount', 1: 'I_mount', 2: 'O'}
+id2label = {0: 'B-Mountain', 1: 'I-Mountain', 2: 'O'}
 
 inference = NERInference(model_path=model_path, id2label=id2label, device='cpu')
 result = inference.predict("Mount Everest is in the Himalayas.")
 print(result)
 ```
+
+**Expected Output:**
+
+```python
+['Mount Everest', 'Himalayas']
+```
+
 ---
 
 ## Future Improvements
 
-1. Extend to support additional entity types (e.g., rivers, landmarks).
-2. Experiment with newer models like RoBERTa or DeBERTa.
-3. Fine-tune hyperparameters using optimization libraries like Optuna.
-4. Apply data augmentation for low-resource scenarios.
+1. **Expand Entity Types**: Incorporate additional entity categories such as rivers, landmarks, and regions.
+2. **Explore Advanced Models**: Experiment with newer transformer-based models like RoBERTa or DeBERTa for potential performance gains.
+3. **Hyperparameter Optimization**: Utilize optimization libraries like Optuna to fine-tune hyperparameters for improved model performance.
+4. **Data Augmentation**: Apply data augmentation techniques to enhance model robustness, especially in low-resource scenarios.
 
+---
