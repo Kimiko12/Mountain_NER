@@ -38,7 +38,7 @@ NER_with_Bert/
 
 ## Getting Started
 
-#### Link pn google drive with model weights and dataset: https://drive.google.com/drive/folders/1RKO4KOj6-9hctxPfYmcD5cuKw-ksP64u?usp=drive_link
+#### Link on google drive with model weights and dataset: https://drive.google.com/drive/folders/1RKO4KOj6-9hctxPfYmcD5cuKw-ksP64u?usp=drive_link
 
 ### Prerequisites
 
