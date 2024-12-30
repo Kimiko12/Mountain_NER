@@ -110,7 +110,6 @@ This script converts raw datasets into a DataFrame with tokens and IOB labels.
 
 Training metrics will be logged. Example metrics:
 ```
-```
 Run `python train.py` to start training process
 ```
 
