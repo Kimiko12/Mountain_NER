@@ -84,9 +84,7 @@ This task uses a combination of two datasets:
 1. **[Kaggle Mountain Dataset](https://www.kaggle.com/datasets/geraygench/mountain-ner-dataset)**  
 2. **[Hugging Face Mountain Dataset](https://huggingface.co/datasets/telord/mountains-ner-dataset)**  
 
-### Raw Data Example
-
-Prepared Dataset Example:
+### Prepared Dataset Example:
 ```text
 Sentence: "The Andes mountains are stunning."
 Tokens: ["The", "Andes", "mountains", "are", "stunning", "."]
