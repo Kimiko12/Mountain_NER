@@ -26,7 +26,6 @@ from transformers import (
 )
 from sklearn.model_selection import train_test_split
 
-# Local imports (your custom modules)
 from config import MODEL_NAME, DEVICE, MAX_LEN, BATCH_SIZE, EPOCHS, SEED, PATH_TO_MODEL_CHECKPOINT
 from dataset import NERDataset
 from data_preparation import DataPreparation
@@ -65,10 +64,8 @@ def compute_class_weights(dataset: NERDataset, num_labels: int) -> torch.Tensor:
                 label_counts[lbl] += 1
                 total_count += 1
 
-    # Ensure no zero division
     label_counts = [max(count, 1) for count in label_counts]
 
-    # Compute class weights as ratio of total_count to label_counts
     class_weights = [total_count / count for count in label_counts]
     logging.info(f"Class counts: {label_counts}")
     logging.info(f"Class weights: {class_weights}")
