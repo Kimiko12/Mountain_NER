@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 This script demonstrates:
 1. Using a custom DataPreparation class (from data_preparation.py) to build a combined dataset.
